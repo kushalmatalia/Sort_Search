@@ -42,16 +42,60 @@ class BubbleSort(Sort):
           self.arr[j], self.arr[j+1] = self.arr[j+1], self.arr[j]
     return self.arr
 
+class MergeSort(Sort):
+
+  def __init__(self, arr):
+    self.arr = arr
+
+  def _sort(self):
+    if len(self.arr)>1:
+        mid = len(self.arr)//2
+        lefthalf = self.arr[:mid]
+        righthalf = self.arr[mid:]
+
+        left_sorter = MergeSort(lefthalf)
+        right_sorter = MergeSort(righthalf)
+
+        left_sorter._sort()
+        right_sorter._sort()
+
+        i=j=k=0
+        while i < len(lefthalf) and j < len(righthalf):
+            if lefthalf[i] < righthalf[j]:
+                self.arr[k]=lefthalf[i]
+                i=i+1
+            else:
+                self.arr[k]=righthalf[j]
+                j=j+1
+            k=k+1
+
+        while i < len(lefthalf):
+            self.arr[k]=lefthalf[i]
+            i=i+1
+            k=k+1
+
+        while j < len(righthalf):
+            self.arr[k]=righthalf[j]
+            j=j+1
+            k=k+1
+    return self.arr
 
 if __name__ == "__main__":
   data_sizes = [50, 100, 500, 1000, 2000, 3000, 4000, 5000]
   bubble_sort_times = []
+  merge_sort_times = []
 
   for size in data_sizes:
     data = [random.randint(1, 100) for i in range(size)]
     bub_sorting = BubbleSort(data)
     bub_execution_time = bub_sorting._time()
     # print(f"Bubble Sorting time {size} :", bub_execution_time)
-    bubble_sort_times.append(bub_execution_time)
+    bubble_sort_times.append("{0:.15f}".format(bub_execution_time))
+
+    merg_sorting = MergeSort(data)
+    merg_execution_time = merg_sorting._time()
+    # print(f"Merge Sorting time {size} :", merg_execution_time)
+    merge_sort_times.append("{0:.15f}".format(merg_execution_time))
 
   print("Bubble Sort timings :: ", bubble_sort_times)
+  print("Merge Sort timings :: ", merge_sort_times)
