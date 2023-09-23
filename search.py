@@ -2,10 +2,24 @@ from abc import ABC, abstractmethod
 import time
 import random
 
+"""
+search.py file -> for accomodating the linear, binary searching algorithms
+class Search - is the parent/base class, having the abstract method of _search, which is protected
+           - this abstract method is to be utilized in other sub/children class which will inherit these methods and override the functionality
+           - _time is another method, which we have updated in order to generically call the time module and calculate the time taken by the algorithm
+
+class LinSearch - is the child class for implementing linear search algorithm
+class BinSearch - is the child class for implementing binary search algorithm
+
+dataset -> We are hard-coding the data sizes and randomly generating values between 1,100 and thus calculating the time taken for the particular data size
+        - Have done the time analysis for both the algorithm and plotted the graph in 'search.png'
+"""
+
+
 """Module with the base implementation of a Sort class."""
 
 class Search(ABC):
-    """Abstract base class for sorting."""
+    """Abstract base class for searching."""
 
     def __init__(self, items):
         self._items = items
