@@ -33,3 +33,7 @@
 *Expected*
 - Merge Sort to be better than Bubble Sort in normal and worst case scenario
 - Binary Search to be better than Linear Search (when data is sorted) in normal and worst case scenario -> if data is not sorted, Binary Search is not applicable
+
+**Plots**
+- For Sort, it is observed that the time analysis has an exponential curve for the bubble sort as compared to merge sort which rather stays on the x-axis because it is more quick
+- For Search, it is observed that the time analysis has an linear curve for the linear search as compared to the binary search algorithm, which rather stays on the x-axis as compared to the other algorithm which takes more time
